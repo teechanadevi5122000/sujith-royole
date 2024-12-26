@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .chat-box {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        .chat-bubble {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        .assistant-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+
+        .input-group {
+            margin-top: 10px;
+        }
+
+        .input-group input {
+            border-radius: 0.375rem;
+        }
+
+        .input-group button {
+            border-radius: 0.375rem;
+        }
+
+        .input-group input, .input-group button {
+            transition: all 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background-color: #4b8df8;
+        }
+        .flow{
+            width: 600px;
+           
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            top: 30%;
+            left: 5%;
+        }
+        .row{
+            width: 600px;
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            top: 30%;
+            left: 55%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-10">
+    <img class="flow" src="flowchart.png"
+    width="100px" height="100px">
+    <img class="row" src="rowriteflow.png"
+    width="100px" height="50px">
+    <div class="chat-container">
+        <h2 class="text-center text-2xl font-semibold mb-4">AI Assistant</h2>
+        
+        <div id="chat-box" class="chat-box flex flex-col gap-4"></div>
+
+        <div class="input-group flex gap-2">
+            <input type="text" id="user-input" class="form-control p-3 w-full border border-gray-300 rounded-lg" placeholder="Type your message...">
+            <button class="btn btn-primary p-3 bg-blue-600 text-white rounded-lg" id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function addMessage(message, isUser = false) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('chat-bubble', isUser ? 'user-message' : 'assistant-message');
+            bubble.textContent = message;
+            chatBox.appendChild(bubble);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', async () => {
+            const message = userInput.value.trim();
+            if (!message) return;
+            addMessage(message, true);
+            userInput.value = '';
+
+            try {
+                const response = await fetch('/api/ai-assistant', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                const data = await response.json();
+                if (data.error) {
+                    addMessage(`Error: ${data.error}`, false);
+                } else {
+                    addMessage(data.response, false);
+                }
+            } catch (error) {
+                addMessage(`Error: ${error.message}`, false);
+            }
+        });
+    </script>
+</body>
+</html>

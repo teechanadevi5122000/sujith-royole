@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royole - Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+      
+       
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .pro{
+            
+            width: 400px;
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            top:60%;
+            left: 35%;
+            
+        }
+        .disp{
+            width: 350px;
+            height: 250px;
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            top:60%;
+            left: 10%;
+        }
+        .wear{
+            width: 350px;
+            height: 250px;
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            top:60%;
+            left: 65%;
+        }
+        .logo{
+            width: 300px;
+            object-fit:contain;
+            float:right;
+            position:absolute;
+            bottom:69%;
+            left:70%;
+        }
+      
+
+        
+        
+    </style>
+    <script>
+        function logout() {
+            // Simulate a logout action
+            alert("You have been logged out.");
+            window.location.href = "index.html"; // Redirect to home page
+        }
+    
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <img class="pro" src="RoWrite.png"
+    width="300px" height="50px">
+    <img class="disp" src="display.png"
+    width="300px" height="300px">
+    <img class="wear" src="wearables.png"
+    width="300px" height="300px">
+    <img class="logo" src="royolelogo.png" width:300px;height:300px;
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">Royole</a>
+            <div class="space-x-6">
+                <a href="ai_assistant.html" class="nav-link">AI Assistant</a>
+                <a 
+                    href="welcome.html" 
+                    class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300"
+                >
+                Logout
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="container mx-auto px-4 py-16 fade-in">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold mb-4">Explore Our Products</h1>
+            <p class="text-xl text-gray-600">Innovating with flexible displays and next-generation electronics</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
+                <h2 class="text-xl font-bold mb-4">Flexible OLED Displays</h2>
+                <p class="text-gray-600">Revolutionary flexible display technology for next-generation devices.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
+                <h2 class="text-xl font-bold mb-4">Advanced Sensors</h2>
+                <p class="text-gray-600">Cutting-edge sensor technology for improved user experiences.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
+                <h2 class="text-xl font-bold mb-4">Wearable Devices</h2>
+                <p class="text-gray-600">Innovative wearable solutions powered by our flexible technology.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
